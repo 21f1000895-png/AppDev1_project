@@ -1,0 +1,52 @@
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+       <title>Search</title>
+   </head>
+   <body>
+       <heading align="center">
+           <h4>Welcome to MyGrocery webapp<br>Fresh veggies and groceries!</h4>
+       </heading>
+       <a href="{{url_for('dashboard')}}">Home</a>|
+       <a href="/buy">Cart</a>|
+       <a href="{{url_for('logout')}}">Logout</a><br><br>
+        {% if result|length==0 %}
+            <h4>No product available for the keyword '{{q}}'!</h4><br>
+        {% else%}
+       <h5>Products available for the searched word '{{q}}' are:</h5>
+       <div class="container-sm text-center">
+
+       <table>
+           <tr>
+               <th>Section</th> 
+               <th> Name</th>
+               <th> Price</th>
+               <th> Unit</th>  
+               <th> Availability</th>  
+                      
+           </tr>
+           {% for i in result%}
+               <tr>
+                   <td><a href="/{{i.sect}}/products">{{ i.sect }}</a></td>
+                   <td>{{ i.product_name }}</td>
+                   <td>{{ i.product_price }}</td>
+                   <td>{{ i.product_unit }} </td>
+                   <td>{% if i.product_quantity == 0  %}
+                           No Stock Available
+                       {% else %}
+                           Instock
+                       {% endif %}
+                   </td>
+                   <td><a type = "button" href="/products/{{i.product_id}}">Buy</a></td>
+               </tr>
+           {% endfor %}
+       </table>
+        {% endif%}
+       </div> <br><br>
+       <Footer align = "center">Copyright 2023 | Designed by 21f1000895</Footer> 
+</body>
+</html>

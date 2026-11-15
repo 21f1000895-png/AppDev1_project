@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Add to Cart</title>
+</head>
+<body>
+    
+    <heading align="center">
+        <h4>Welcome to MyGrocery webapp<br>Fresh veggies and groceries!</h4>
+    </heading>
+    <br>
+    <a href="{{url_for('dashboard')}}">Home</a>|
+    <a href="/profile">Profile</a>|
+    <a href="/buy">Cart</a>|
+    <a href="{{url_for('logout')}}">Logout</a>
+    <div class="container-sm">
+    <div>
+        <h4>Add to cart</h4>
+        <form action="/products/{{p1.product_id}}" method="POST" id="addtocart">
+            <div>
+                <label>Product Id:</label>
+                <input type="text" name="p_id" value="{{p1.product_id}}" disabled />
+            </div><br>
+            <div>
+                <label>Product name:</label>
+                <input type="text" name="p_name" value="{{p1.product_name}}" disabled />
+            </div><br>
+            <div>
+                <label>Product Price:</label>
+                <input type="text" name="p_price" value="{{p1.product_price}}" disabled />
+            </div><br>
+            <div>
+                <label>Product Unit:</label>
+                <input type="text" name="p_unit" value="{{p1.product_unit}}" disabled />
+            </div><br>
+            <div>
+                <label>Available Stock:</label>
+                <input type="text" name="available" value="{{p1.product_quantity}}" disabled />
+            </div><br>
+            
+            <div>
+                <label for="quantity">Choose the Quantity:</label>
+                <input type="number" name="quantity" min="1" max="{{p1.product_quantity}}" value="" required />   
+            </div><br>
+            <div>
+                <input type="submit" value="Add to Cart">
+            </div>
+        </form>
+    </div><br><br>
+    <Footer align = "center">Copyright 2023 | Designed by 21f1000895</Footer>
+</body>
+</html>

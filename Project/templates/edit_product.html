@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Update Products</title>
+</head>
+<body>
+    <heading align="center">
+        <h4>Welcome to MyGrocery webapp<br>Fresh veggies and groceries!</h4>
+    </heading>
+    <div>
+        <a href="/admin_dashboard">Home</a>|
+        <a href="/">Logout</a>
+    </div><br>
+    <div class="container-sm">
+    <div><h4>Update Product</h4>
+        <br>
+        <form action="/admin/{{product.product_id}}/edit" method="POST" id="editproduct">
+            <div>
+                <label>Product name:</label>
+                <input type="text" name="p_name" value="{{product.product_name}}" />
+            </div><br>
+            <div>
+                <label for="p_unit">Product unit : </label>
+                <select name="p_unit" id="p_unit"  value="{{product.product_unit}}">
+                    <option value="Rs/kg">Rs/Kg</option>
+                    <option value="Rs/Litre">Rs/Litre</option>
+                    <option value="Rs/pack">Rs/pack</option>
+                </select>          
+            </div><br>
+            <div>
+                <label>Rate per unit: </label>
+                <input type="number" name="p_price" value="{{product.product_price}}"/>
+            </div><br>
+            <div>
+                <label> Quantity:</label>
+                <input type="number" name="quantity" value="" required/>
+            </div><br>
+            <div>
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div><br>
+    </div><br><br>
+<Footer align = "center">Copyright 2023 | Designed by 21f1000895</Footer>
+</body>
+</html>

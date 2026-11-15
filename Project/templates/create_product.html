@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Create Products</title>
+</head>
+<body>
+    <heading align="center">
+        <h4>Welcome to MyGrocery webapp<br>Fresh veggies and groceries!</h4>
+    </heading>
+    <div>
+        <a href="/admin_dashboard">Home</a>|
+        <a href="/">Logout</a>
+    </div><br>
+    <div class="container-sm">
+    {% if products|length == 0 %}
+    <h4>No products available in {{sec.section_name}} section:</h4>
+    {% else %}
+    <h4>Products available in {{sec.section_name}} are:</h4>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th> 
+            <th>Unit</th> 
+            <th>Quantity</th>
+            <th>Availability</th> 
+            
+            <th>Action</th>        
+        </tr>
+        {%  for product in products|sort(attribute='product_id',reverse=true) %}
+            <tr>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.product_price }} </td>
+                <td>{{ product.product_unit }}</td>
+                <td>{{ product.product_quantity }}</td>
+                <td>{% if product.product_quantity == 0  %}
+                        Out of Stock
+                    {% else %}
+                        Instock
+                    {% endif %}
+                </td>
+                
+                <td><a href="/admin/{{product.product_id}}/edit">Update</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}  <br> 
+    <h5>Add products:  </h5>
+    <div>
+        <br>
+        <form action="/admin/{{section_id}}/product" method="POST" id="addproducts">
+            <div>
+                <label>Product name:</label>
+                <input type="text" name="p_name" value="" required/>
+            </div><br>
+            <div>
+                <label for="p_unit">Product unit : </label>
+                <select name="p_unit" id="p_unit" required>
+                    <option value="">  -- choose  the  unit:--</option>
+                    <option value="Rs/kg">Rs/Kg</option>
+                    <option value="Rs/Litre">Rs/Litre</option>
+                    <option value="Rs/pack">Rs/pack</option>
+                </select>          
+            </div><br>
+            <div>
+                <label>Rate per unit: </label>
+                <input type="number" name="p_price" value="" required/>
+            </div><br>
+            <div>
+                <label> Quantity:</label>
+                <input type="number" name="quantity" value="" required/>
+            </div><br>
+            <div>
+                <input type="submit" value="Save">
+            </div>
+        </form>
+    </div><br>
+    </div><br><br>
+<Footer align = "center">Copyright 2023 | Designed by 21f1000895</Footer>
+</body>
+</html>
